@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2B;16</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        div {
+            width: 50%;
+            text-align: center;
+        }
+        img {
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .uploader {
+            width: 500px;
+            margin-bottom: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        table {
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="uploader">
+        <form method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            {% for error in form.photo.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div style="display: flex; flex-direction: column; margin-right: 30px; width: fit-content;">
+                    {{ form.photo(class="form-control") }}
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    {{ form.submit(class="btn btn-success") }}
+                </div>
+            </div>
+        </form>
+
+        {% if file_url %}
+            <img src="{{ file_url }}" width="300px" height="300px">
+        {% endif %}
+
+        <table>
+            <tr>
+                <th>
+                    Prediction
+                </th>
+                <th>
+                    Confidence
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    {{ prediction }}
+                </td>
+                <td>
+                    {{ confidence }}
+                </td>
+        </table>
+    </div>
+    <footer>
+        <p>Made with 💖 by <span style="color: peru;"> Ashutosh </span> <span style="color: teal;">Kumar</span> <span style="color: burlywood;">Jha</span> <span style="color: olivedrab;"><2B;16></span></p>
+    </footer>
+</body>
+</html>
